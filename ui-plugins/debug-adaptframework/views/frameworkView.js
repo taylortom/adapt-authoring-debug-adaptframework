@@ -8,7 +8,8 @@ define(function(require){
     className: 'framework',
     events: {
       'click button.update': 'updateFramework',
-      'click button.purge': 'purgeFramework'
+      'click button.purge': 'purgeFramework',
+      'click button.install': 'installPlugin'
     },
 
     updateFramework: async function(e) {
@@ -19,6 +20,19 @@ define(function(require){
     purgeFramework: async function(e) {
       e.preventDefault();
       this.post('purge');
+    },
+    
+    installPlugin: async function(e) {
+      e.preventDefault();
+      try {
+        await $.post('api/contentplugins/install', {
+          name: this.$('input#name').val(),
+          version: this.$('input#version').val() ?? '*',
+          force: this.$('input#force').val() === 'on'
+        });
+      } catch(e) {
+        Origin.Notify.alert({ type: 'error', text: e.responseJSON.message });
+      }
     },
 
     post: async function(endpoint) {

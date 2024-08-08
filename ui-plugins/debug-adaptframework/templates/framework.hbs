@@ -1,10 +1,21 @@
 <div class="inner">
-  <div class="buttons">
+  <div class="input-group">
+    <h1>Framework admin</h1>
     <button class="update btn action-primary">
       <span class="update-inner">{{t 'app.updateframework'}}</span>
     </button>
     <button class="purge btn alert">
       <span class="purge-inner">{{t 'app.purgeframework'}}</span>
     </button>
+  </div>
+  <div class="input-group">
+    <h1>Install plugin</h1>
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" />
+    <label for="name">Version</label>
+    <input id="version" name="version" type="text" />
+    <label for="name">Force install</label>
+    <input id="force" name="force" type="checkbox" />
+    <button type="button" class="install btn primary">Install</button>
   </div>
 </div>
