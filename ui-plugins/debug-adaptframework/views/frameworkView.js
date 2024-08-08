@@ -28,8 +28,9 @@ define(function(require){
         await $.post('api/contentplugins/install', {
           name: this.$('input#name').val(),
           version: this.$('input#version').val() ?? '*',
-          force: this.$('input#force').val() === 'on'
+          force: this.$('input#force').is(':checked')
         });
+        Origin.Notify.alert({ type: 'success', text: 'Plugin installed successfully' });
       } catch(e) {
         Origin.Notify.alert({ type: 'error', text: e.responseJSON.message });
       }
