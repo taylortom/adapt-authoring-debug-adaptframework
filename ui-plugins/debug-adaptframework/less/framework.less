@@ -6,11 +6,24 @@ body.module-debug {
     .input-group {
       padding: 20px;
       text-align: center;
-      max-width: 500px;
+      max-width: 750px;
       margin: 0 auto;
 
+      h1 {
+        padding-bottom: 10px;
+      }
       > input {
+        &#name { width: 300px; }
+        &#version { width: 75px; }
+      }
+      label[for="force"] {
+        width: 0;
+        display: inline-block;
+      }
+      button.install {
         display: block;
+        margin: 0 AUTO;
+        margin-top: 10px;
       }
     }
   }
