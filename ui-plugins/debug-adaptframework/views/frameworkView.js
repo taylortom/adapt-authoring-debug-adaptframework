@@ -9,7 +9,8 @@ define(function(require){
     events: {
       'click button.update': 'updateFramework',
       'click button.purge': 'purgeFramework',
-      'click button.install': 'installPlugin'
+      'click button.install': 'installPlugin',
+      'click button.cache': 'clearCache'
     },
 
     updateFramework: async function(e) {
@@ -20,6 +21,11 @@ define(function(require){
     purgeFramework: async function(e) {
       e.preventDefault();
       this.post('purge');
+    },
+    
+    clearCache: async function(e) {
+      e.preventDefault();
+      this.post('clearcache');
     },
     
     installPlugin: async function(e) {
