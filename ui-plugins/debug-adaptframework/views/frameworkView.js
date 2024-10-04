@@ -15,38 +15,34 @@ define(function(require){
 
     updateFramework: async function(e) {
       e.preventDefault();
-      this.post('update');
+      this.post('adapt/update', undefined, 'Framework update successful');
     },
     
     purgeFramework: async function(e) {
       e.preventDefault();
-      this.post('purge');
+      this.post('adapt/purge', undefined, 'Framework purged successfully');
     },
     
     clearCache: async function(e) {
       e.preventDefault();
-      this.post('clearcache');
+      this.post('adapt/clearcache', undefined, 'Build cache cleared');
     },
     
     installPlugin: async function(e) {
       e.preventDefault();
-      try {
-        await $.post('api/contentplugins/install', {
-          name: this.$('input#name').val(),
-          version: this.$('input#version').val(),
-          force: this.$('input#force').is(':checked')
-        });
-        Origin.Notify.alert({ type: 'success', text: 'Plugin installed successfully' });
-      } catch(e) {
-        Origin.Notify.alert({ type: 'error', text: e.responseJSON.message });
-      }
+      await this.post('contentplugins/install', {
+        name: this.$('input#name').val(),
+        version: this.$('input#version').val(),
+        force: this.$('input#force').is(':checked')
+      }, 'Plugin installed successfully');
     },
 
-    post: async function(endpoint) {
+    post: async function(endpoint, data, successText) {
       try {
-        await $.post(`api/adapt/${endpoint}`);
+        await $.post(`api/${endpoint}`, data);
+        Origin.Notify.toast({ type: 'success', text: successText });
       } catch(e) {
-        Origin.Notify.alert(e);
+        Origin.Notify.toast({ type: 'error', text: e.responseJSON.message });
       }
     }
   }, {
