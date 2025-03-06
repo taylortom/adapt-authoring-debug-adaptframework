@@ -1,6 +1,7 @@
 {
   "app.adaptframework": "Adapt Framework",
   "app.clearframeworkcache": "Clear cache",
+  "app.downloadframework": "Download",
   "app.updateframework": "Update",
   "app.purgeframework": "Purge"
 }

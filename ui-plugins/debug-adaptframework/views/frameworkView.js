@@ -7,10 +7,16 @@ define(function(require){
     tagName: 'div',
     className: 'framework',
     events: {
+      'click button.download': 'downloadFramework',
       'click button.update': 'updateFramework',
       'click button.purge': 'purgeFramework',
       'click button.install': 'installPlugin',
       'click button.cache': 'clearCache'
+    },
+
+    updateFramework: async function(e) {
+      e.preventDefault();
+      await this.post('adapt/download', undefined, 'Framework update successful');     
     },
 
     updateFramework: async function(e) {
