@@ -14,9 +14,19 @@ define(function(require){
       'click button.cache': 'clearCache'
     },
 
-    updateFramework: async function(e) {
+    downloadFramework: async function(e) {
       e.preventDefault();
-      await this.post('adapt/download', undefined, 'Framework update successful');     
+      try {
+        await $.post(`api/adapt/package`);
+        Origin.Notify.toast({ 
+          type: 'success',
+          text: `Framework packaged successfully.<p><a style="color:white;" download href="/api/adapt/download">Click to download</a></p>`,
+          persist: true
+  
+        });
+      } catch(e) {
+        Origin.Notify.toast({ type: 'error', text: e.responseJSON.message });
+      }
     },
 
     updateFramework: async function(e) {
